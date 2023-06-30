@@ -59,6 +59,8 @@ func (p *Processor) Process(out io.Writer, pkg *types.Package) (err error) {
 
 	fmt.Fprintln(out, "package", pkg.Name())
 	fmt.Fprintln(out)
+	fmt.Fprintln(out, `import _ "github.com/cookieo9/packager/lib/packager" // force entry in go.mod`)
+	fmt.Fprintln(out)
 
 	for i := 0; i < methods.Len(); i++ {
 		method := methods.At(i)
