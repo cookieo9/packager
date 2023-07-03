@@ -4,7 +4,7 @@
 
 package example
 
-import _ "github.com/cookieo9/packager/lib/packager" // force entry in go.mod
+import _ "github.com/cookieo9/packager/lib/packager"
 
 // Next is package exported version of "func (*foo).Next() int" called on a package level value.
 func Next() int {
