@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"strings"
@@ -37,7 +36,7 @@ func output(code []byte) error {
 		_, err := os.Stdout.Write(code)
 		return err
 	}
-	return ioutil.WriteFile(outfile(), code, 0644)
+	return os.WriteFile(outfile(), code, 0644)
 }
 
 func format(filename string, data []byte) ([]byte, error) {
