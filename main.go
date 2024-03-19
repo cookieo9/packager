@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/cookieo9/packager/lib/packager"
@@ -26,9 +27,9 @@ func init() {
 
 func outfile() string {
 	if *out == "" || *out == "-" {
-		return processor.Local + ".funcs.go"
+		return filepath.Clean(processor.Local + ".funcs.go")
 	}
-	return *out
+	return filepath.Clean(*out)
 }
 
 func output(code []byte) error {
