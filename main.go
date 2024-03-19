@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/cookieo9/packager/lib/packager"
@@ -27,9 +27,9 @@ func init() {
 
 func outfile() string {
 	if *out == "" || *out == "-" {
-		return processor.Local + ".funcs.go"
+		return filepath.Clean(processor.Local + ".funcs.go")
 	}
-	return *out
+	return filepath.Clean(*out)
 }
 
 func output(code []byte) error {
@@ -37,7 +37,7 @@ func output(code []byte) error {
 		_, err := os.Stdout.Write(code)
 		return err
 	}
-	return ioutil.WriteFile(outfile(), code, 0644)
+	return os.WriteFile(outfile(), code, 0644)
 }
 
 func format(filename string, data []byte) ([]byte, error) {
